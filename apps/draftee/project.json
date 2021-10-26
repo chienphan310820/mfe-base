@@ -1,0 +1,99 @@
+{
+  "projectType": "application",
+  "root": "apps/draftee",
+  "sourceRoot": "apps/draftee/src",
+  "prefix": "ng-base-mfe",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:webpack-browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/draftee",
+        "index": "apps/draftee/src/index.html",
+        "main": "apps/draftee/src/main.ts",
+        "polyfills": "apps/draftee/src/polyfills.ts",
+        "tsConfig": "apps/draftee/tsconfig.app.json",
+        "assets": ["apps/draftee/src/favicon.ico", "apps/draftee/src/assets"],
+        "styles": ["apps/draftee/src/styles.css"],
+        "scripts": [],
+        "customWebpackConfig": {
+          "path": "apps/draftee/webpack.config.js"
+        }
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/draftee/src/environments/environment.ts",
+              "with": "apps/draftee/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all",
+          "customWebpackConfig": {
+            "path": "apps/draftee/webpack.prod.config.js"
+          }
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@nrwl/angular:webpack-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "draftee:build:production"
+        },
+        "development": {
+          "browserTarget": "draftee:build:development"
+        }
+      },
+      "defaultConfiguration": "development",
+      "options": {
+        "port": 4201
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "draftee:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/draftee/src/**/*.ts",
+          "apps/draftee/src/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/draftee"],
+      "options": {
+        "jestConfig": "apps/draftee/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

@@ -1,0 +1,28 @@
+{
+  "root": "apps/desbursement-e2e",
+  "sourceRoot": "apps/desbursement-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/desbursement-e2e/cypress.json",
+        "devServerTarget": "desbursement:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "desbursement:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/desbursement-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["desbursement"]
+}

@@ -1,4 +1,11 @@
 {
   "version": 2,
-  "projects": {}
+  "projects": {
+    "dashboard": "apps/dashboard",
+    "dashboard-e2e": "apps/dashboard-e2e",
+    "desbursement": "apps/desbursement",
+    "desbursement-e2e": "apps/desbursement-e2e",
+    "draftee": "apps/draftee",
+    "draftee-e2e": "apps/draftee-e2e"
+  }
 }

@@ -1,0 +1,29 @@
+<!-- <div class="p-fluid">
+    <div class="p-field">
+        <select id="organization" class="form-control" [(ngModel)]="organization">
+            <option *ngFor="let item of organizationLst" [ngValue]="item">{{item.code}} - {{item.name}}</option>
+        </select>
+    </div>
+    <div class="p-grid row">
+        <div class="p-col-4">
+            <button type="button" class="btn btn-block btn-secondary" (click)="onEvent('logout')">Logout</button>
+        </div>
+        <div class="p-offset-4 p-col-4">
+            <button type="button" class="btn btn-block btn-primary" [disabled]="!organization"
+                (click)="onEvent('choose')">Choose</button>
+        </div>
+    </div>
+</div> -->
+
+<div class="p-fluid">
+  <div class="p-fluid p-grid row">
+    <div *ngFor="let item of organizationLst" [ngClass]="item.props.style" (click)="onEvent('choose', item)">
+      <i [ngClass]="item.props.icon"></i>
+      <span class="label bottom">{{item.name}}</span>
+    </div>
+    <div class="btn-small logout" (click)="onEvent('logout')">
+      <i class="fa fa-sign-out fa-2x"></i>
+      <span class="label bottom">Logout</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,68 @@
+<app-header [navbarBrandRouterLink]="['/dashboard']" [fixed]="true" [navbarBrandFull]="{src: 'assets/img/brand/Custom_HeadLogo-full.gif', height: 30, alt: 'MSB Logo'}" [navbarBrandMinimized]="{src: 'assets/img/brand/logo-MSB.png', width: 30, height: 30, alt: 'CoreUI Logo'}"
+    [sidebarToggler]="'lg'" [asideMenuToggler]="'lg'">
+    <ul class="nav navbar-nav d-md-down-none">
+        <li class="nav-item px-3">
+            <a class="nav-link" href="#">Home</a>
+        </li>
+    </ul>
+    <ul class="nav navbar-nav ml-auto">
+        <li class="nav-item d-md-down-none">
+            <!-- <a class="nav-link" href="#"><i class="icon-bell"></i><span class="badge badge-pill badge-danger">0</span></a> -->
+            <!-- Bạn đã đi chơi được <strong>{{commonService.idleTime}}</strong> ms -->
+        </li>
+        <li class="nav-item dropdown" dropdown placement="bottom right">
+            <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle (click)="false">
+                <img [src]="avatarUrl" class="img-avatar" onerror="this.src='assets/img/avatars/6.jpg'" />
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
+                <a class="dropdown-item" style="text-align: center;">{{userDisplayName}}</a>
+                <div class="dropdown-header text-center"><strong>Tác nghiệp</strong></div>
+                <a class="dropdown-item" (click)="onEvent('chooseModule')"><i class="fa fa-bank"></i>&nbsp;Chọn phân hệ</a>
+                <!-- <a class="dropdown-item" href="#rbMyTask" ui-sref="rbMyTask"><i class="fa fa-tasks"></i>&nbsp;Hồ sơ đang xử lý</a> -->
+                <div class="dropdown-header text-center"><strong>Tài khoản</strong></div>
+                <!-- <a class="dropdown-item" href="#"><i class="fa fa-exchange"></i>&nbsp;Đổi thông tin</a> -->
+                <a class="dropdown-item" (click)="logout()"><i class="fa fa-sign-out"></i>&nbsp;Đăng xuất</a>
+            </div>
+        </li>
+    </ul>
+</app-header>
+<div class="app-body">
+    <app-sidebar #appSidebar [fixed]="true" [display]="'lg'" [minimized]="sidebarMinimized" (minimizedChange)="toggleMinimize($event)">
+        <app-sidebar-nav [navItems]="navItems" [perfectScrollbar] [disabled]="appSidebar.minimized"></app-sidebar-nav>
+        <app-sidebar-minimizer></app-sidebar-minimizer>
+    </app-sidebar>
+
+    <!-- Main content -->
+    <main class="main">
+        <!-- Breadcrumb -->
+        <!-- breaking change 'cui-breadcrumb' -->
+        <!-- <cui-breadcrumb>
+            <li class="breadcrumb-menu d-md-down-none">
+                <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                    <a class="btn" href="#"><i class="icon-speech"></i></a>
+                    <a class="btn" [routerLink]="['/dashboard']"><i class="icon-graph"></i> &nbsp;Dashboard</a>
+                </div>
+            </li>
+        </cui-breadcrumb> -->
+        <div class="container-fluid" style="margin-top: 5px;">
+            <p-toast key="toast" baseZIndex="999999" [showTransformOptions]="'translateX(100%)'"></p-toast>
+            <p-toast key="toast-center" position="center" baseZIndex="999999" [showTransformOptions]="'translateX(100%)'"></p-toast>
+            <p-toast key="toast-top-center" position="top-center" baseZIndex="999999" [showTransformOptions]="'translateX(100%)'"></p-toast>
+
+            <p-confirmDialog header="Yêu cầu xác nhận" baseZIndex="999999" icon="pi pi-exclamation-triangle" [style]="{'max-width':'70%'}">
+            </p-confirmDialog>
+            <router-outlet></router-outlet>
+
+            <p-scrollTop></p-scrollTop>
+
+            <ngx-spinner [zIndex]="99999999" bdColor="rgba(51,51,51,0.8)" size="medium" color="#f2811d" [type]="commonService.spinnerTypes[commonService.spinnerIndex]">
+                <p style="font-size: 20px; color: white">{{commonService.loadingContent}}</p>
+            </ngx-spinner>
+        </div>
+    </main>
+    <app-aside [fixed]="true" [display]="false" [ngClass]="'test'">
+    </app-aside>
+</div>
+<app-footer>
+    <span class="ml-auto">Mọi vướng mắc khi sử dụng, vui lòng liên hệ hòm mail <a href="mailto: hotro.mer@msb.com.vn"><b>Hỗ trợ Mercury</b></a> (hotro.mer@msb.com.vn)</span>
+</app-footer>
