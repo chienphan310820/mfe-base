@@ -10,7 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
-import { UserComponent } from './remote-entry/user/user.component';
+import { UserComponent } from './remote-entry/services/user.component';
 
 @NgModule({
   declarations: [AppComponent],

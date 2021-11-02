@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 
 import { RemoteEntryComponent } from './entry.component';
-import { UserComponent } from './user/user.component';
+import { UserComponent } from './services/user.component';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -16,10 +16,10 @@ import { HttpClientModule } from '@angular/common/http';
         path: '',
         component: RemoteEntryComponent,
       },
-      // {
-      //   path: 'user',
-      //   component: RemoteEntryComponent,
-      // }
+      {
+        path: 'user',
+        component: RemoteEntryComponent,
+      }
     ]),
   ],
   providers: [],

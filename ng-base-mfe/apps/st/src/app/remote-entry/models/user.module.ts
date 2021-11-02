@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
-import { UserComponent } from './user.component';
+import { UserComponent } from '../services/user.component';
 import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
