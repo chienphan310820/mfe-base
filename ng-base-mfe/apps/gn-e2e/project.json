@@ -1,0 +1,28 @@
+{
+  "root": "apps/gn-e2e",
+  "sourceRoot": "apps/gn-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/gn-e2e/cypress.json",
+        "devServerTarget": "gn:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "gn:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/gn-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["gn"]
+}

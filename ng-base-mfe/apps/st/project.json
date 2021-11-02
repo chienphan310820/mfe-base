@@ -1,0 +1,96 @@
+{
+  "projectType": "application",
+  "root": "apps/st",
+  "sourceRoot": "apps/st/src",
+  "prefix": "ng-base-mfe",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:webpack-browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "diapps/st/st",
+        "index": "apps/st/src/index.html",
+        "main": "apps/st/src/main.ts",
+        "polyfills": "apps/st/src/polyfills.ts",
+        "tsConfig": "apps/st/tsconfig.app.json",
+        "assets": ["apps/st/src/favicon.ico", "apps/st/src/assets"],
+        "styles": ["apps/st/src/styles.css"],
+        "scripts": [],
+        "customWebpackConfig": {
+          "path": "apps/st/webpack.config.js"
+        }
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/st/src/environments/environment.ts",
+              "with": "apps/st/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all",
+          "customWebpackConfig": {
+            "path": "apps/st/webpack.prod.config.js"
+          }
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@nrwl/angular:webpack-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "st:build:production"
+        },
+        "development": {
+          "browserTarget": "st:build:development"
+        }
+      },
+      "defaultConfiguration": "development",
+      "options": {
+        "port": 4201
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "st:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["apps/st/src/**/*.ts", "apps/st/src/**/*.html"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/st"],
+      "options": {
+        "jestConfig": "apps/st/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
